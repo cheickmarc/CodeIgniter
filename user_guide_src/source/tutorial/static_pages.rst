@@ -24,7 +24,7 @@ you'll see URL patterns that match:
 As URL schemes become more complex, this may change. But for now, this
 is all we will need to know.
 
-Create a file at application/controllers/Pages.php with the following
+Create a file at *application/controllers/Pages.php* with the following
 code.
 
 ::
@@ -97,7 +97,7 @@ page actually exists:
 
 	public function view($page = 'home')
 	{
-	        if ( ! file_exists(APPPATH.'/views/pages/'.$page.'.php'))
+	        if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
 		{
 			// Whoops, we don't have a page for that!
 			show_404();
@@ -162,7 +162,7 @@ arguments.
 More information about routing can be found in the URI Routing
 :doc:`documentation <../general/routing>`.
 
-Here, the second rule in the ``$routes`` array matches **any** request
+Here, the second rule in the ``$route`` array matches **any** request
 using the wildcard string ``(:any)``. and passes the parameter to the
 ``view()`` method of the ``Pages`` class.
 

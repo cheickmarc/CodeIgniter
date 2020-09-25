@@ -7,7 +7,7 @@ connection values (username, password, database name, etc.). The config
 file is located at application/config/database.php. You can also set
 database connection values for specific
 :doc:`environments <../libraries/config>` by placing **database.php**
-it the respective environment config folder.
+in the respective environment config folder.
 
 The config settings are stored in a multi-dimensional array with this
 prototype::
@@ -186,7 +186,7 @@ Explanation of Values:
 			    - 'ssl_key'    - Path to the private key file
 			    - 'ssl_cert'   - Path to the public key certificate file
 			    - 'ssl_ca'     - Path to the certificate authority file
-			    - 'ssl_capath' - Path to a directory containing trusted CA certificats in PEM format
+			    - 'ssl_capath' - Path to a directory containing trusted CA certificates in PEM format
 			    - 'ssl_cipher' - List of *allowed* ciphers to be used for the encryption, separated by colons (':')
 			    - 'ssl_verify' - TRUE/FALSE; Whether to verify the server certificate or not ('mysqli' only)
 

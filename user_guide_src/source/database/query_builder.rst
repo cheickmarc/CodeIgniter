@@ -119,7 +119,7 @@ escaping of fields may break them.
 
 ::
 
-	$this->db->select('(SELECT SUM(payments.amount) FROM payments WHERE payments.invoice_id=4') AS amount_paid', FALSE);
+	$this->db->select('(SELECT SUM(payments.amount) FROM payments WHERE payments.invoice_id=4) AS amount_paid', FALSE);
 	$query = $this->db->get('mytable');
 
 **$this->db->select_max()**
@@ -358,13 +358,14 @@ searches.
 		// WHERE `title` LIKE '%match%' ESCAPE '!' AND  `body` LIKE '%match% ESCAPE '!'
 
 	If you want to control where the wildcard (%) is placed, you can use
-	an optional third argument. Your options are 'before', 'after' and
+	an optional third argument. Your options are 'before', 'after', 'none' and
 	'both' (which is the default).
 
 	::
 
 		$this->db->like('title', 'match', 'before');	// Produces: WHERE `title` LIKE '%match' ESCAPE '!'
 		$this->db->like('title', 'match', 'after');	// Produces: WHERE `title` LIKE 'match%' ESCAPE '!'
+		$this->db->like('title', 'match', 'none');	// Produces: WHERE `title` LIKE 'match' ESCAPE '!'
 		$this->db->like('title', 'match', 'both');	// Produces: WHERE `title` LIKE '%match%' ESCAPE '!'
 
 #. **Associative array method:**
@@ -654,7 +655,7 @@ will be reset (by default it will be--just like $this->db->insert())::
 	// Produces string: INSERT INTO mytable (`title`, `content`) VALUES ('My Title', 'My Content')
 
 The key thing to notice in the above example is that the second query did not
-utlize `$this->db->from()` nor did it pass a table name into the first
+utilize `$this->db->from()` nor did it pass a table name into the first
 parameter. The reason this worked is because the query has not been executed
 using `$this->db->insert()` which resets values or reset directly using
 `$this->db->reset_query()`.
@@ -1018,7 +1019,7 @@ Here's a usage example::
 
 
 .. note:: The following statements can be cached: select, from, join,
-	where, like, group_by, having, order_by, set
+	where, like, group_by, having, order_by
 
 
 ***********************
@@ -1433,15 +1434,20 @@ Class Reference
 
 		Compiles and executes an INSERT statement.
 
-	.. php:method:: insert_batch([$table = ''[, $set = NULL[, $escape = NULL]]])
+	.. php:method:: insert_batch($table[, $set = NULL[, $escape = NULL[, $batch_size = 100]]])
 
 		:param	string	$table: Table name
 		:param	array	$set: Data to insert
 		:param	bool	$escape: Whether to escape values and identifiers
+		:param	int	$batch_size: Count of rows to insert at once
 		:returns:	Number of rows inserted or FALSE on failure
 		:rtype:	mixed
 
-		Compiles and executes batch INSERT statements.
+		Compiles and executes batch ``INSERT`` statements.
+
+		.. note:: When more than ``$batch_size`` rows are provided, multiple
+			``INSERT`` queries will be executed, each trying to insert
+			up to ``$batch_size`` rows.
 
 	.. php:method:: set_insert_batch($key[, $value = ''[, $escape = NULL]])
 
@@ -1464,15 +1470,20 @@ Class Reference
 
 		Compiles and executes an UPDATE statement.
 
-	.. php:method:: update_batch([$table = ''[, $set = NULL[, $value = NULL]]])
+	.. php:method:: update_batch($table[, $set = NULL[, $value = NULL[, $batch_size = 100]]])
 
 		:param	string	$table: Table name
 		:param	array	$set: Field name, or an associative array of field/value pairs
 		:param	string	$value: Field value, if $set is a single field
+		:param	int	$batch_size: Count of conditions to group in a single query
 		:returns:	Number of rows updated or FALSE on failure
 		:rtype:	mixed
 
-		Compiles and executes batch UPDATE statements.
+		Compiles and executes batch ``UPDATE`` statements.
+
+		.. note:: When more than ``$batch_size`` field/value pairs are provided,
+			multiple queries will be executed, each handling up to
+			``$batch_size`` field/value pairs.
 
 	.. php:method:: set_update_batch($key[, $value = ''[, $escape = NULL]])
 

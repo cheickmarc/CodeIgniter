@@ -108,7 +108,7 @@ The following functions are available:
 				<input type="hidden" name="member_id" value="234" />
 
 
-.. php:function:: form_open_multipart([$action = ''[, $attributes = array()[, $hidden = array()]])
+.. php:function:: form_open_multipart([$action = ''[, $attributes = array()[, $hidden = array()]]])
 
 	:param	string	$action: Form action/target URI string
 	:param	array	$attributes: HTML attributes
@@ -187,7 +187,7 @@ The following functions are available:
 			<input type="hidden" name="email" value="john@example.com" id="hiddenemail" class="hiddenemail" />
 		*/
 
-.. php:function:: form_input([$data = ''[, $value = ''[, $extra = '']])
+.. php:function:: form_input([$data = ''[, $value = ''[, $extra = '']]])
 
 	:param	array	$data: Field attributes data
 	:param	string	$value: Field value
@@ -381,7 +381,7 @@ The following functions are available:
 
 				<fieldset>
 					<legend>Address Information</legend>
-						<p>form content here</p>
+						<p>fieldset content here</p>
 				</fieldset>
 		*/
 
@@ -402,7 +402,7 @@ The following functions are available:
 
 			<fieldset id="address_info" class="address_info">
 				<legend>Address Information</legend>
-				<p>form content here</p>
+				<p>fieldset content here</p>
 			</fieldset>
 		*/
 
@@ -461,12 +461,12 @@ The following functions are available:
 	fourth parameter::
 
 		$js = 'onClick="some_function()"';
-		echo form_checkbox('newsletter', 'accept', TRUE, $js)
+		echo form_checkbox('newsletter', 'accept', TRUE, $js);
 
 	Or you can pass it as an array::
 
 		$js = array('onClick' => 'some_function();');
-		echo form_checkbox('newsletter', 'accept', TRUE, $js)
+		echo form_checkbox('newsletter', 'accept', TRUE, $js);
 
 
 .. php:function:: form_radio([$data = ''[, $value = ''[, $checked = FALSE[, $extra = '']]]])
@@ -486,7 +486,7 @@ The following functions are available:
 
 	:param	string	$label_text: Text to put in the <label> tag
 	:param	string	$id: ID of the form element that we're making a label for
-	:param	string	$attributes: HTML attributes
+	:param	mixed	$attributes: HTML attributes
 	:returns:	An HTML field label tag
 	:rtype:	string
 

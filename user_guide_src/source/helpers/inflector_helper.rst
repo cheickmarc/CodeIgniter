@@ -3,7 +3,7 @@ Inflector Helper
 ################
 
 The Inflector Helper file contains functions that permits you to change
-words to plural, singular, camel case, etc.
+**English** words to plural, singular, camel case, etc.
 
 .. contents::
   :local:
@@ -38,7 +38,7 @@ The following functions are available:
 .. php:function:: plural($str)
 
 	:param	string	$str: Input string
-	:returns:	A plular word
+	:returns:	A plural word
 	:rtype:	string
 
 	Changes a singular word to plural. Example::
@@ -85,7 +85,7 @@ The following functions are available:
 
 		echo humanize('my-dog-spot', '-'); // Prints 'My Dog Spot'
 
-.. php:function:: is_countable($word)
+.. php:function:: word_is_countable($word)
 
 	:param	string	$word: Input string
 	:returns:	TRUE if the word is countable or FALSE if not
@@ -93,4 +93,7 @@ The following functions are available:
 
 	Checks if the given word has a plural version. Example::
 
-		is_countable('equipment'); // Returns FALSE
+		word_is_countable('equipment'); // Returns FALSE
+
+	.. note:: This function used to be called ``is_countable()`` in
+		in previous CodeIgniter versions.
